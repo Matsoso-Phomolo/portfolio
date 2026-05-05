@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Matsoso Phomolo - Backend Developer, Full-Stack Developer, and SOC AI Systems Builder specializing in FastAPI, PostgreSQL, React, dashboards, and AI-powered systems." />
+  <title>Matsoso Phomolo | Backend Developer & SOC AI Systems Builder</title>
+
+  <style>
+    :root{
+      --bg:#020617;
+      --bg-soft:#0f172a;
+      --card:#111827;
+      --card-2:#1e293b;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --primary:#38bdf8;
+      --primary-2:#22d3ee;
+      --accent:#a78bfa;
+      --success:#34d399;
+      --warning:#fbbf24;
+      --border:rgba(148,163,184,0.18);
+      --shadow:0 24px 80px rgba(15,23,42,0.65);
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Inter, Arial, sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:
+        radial-gradient(circle at 20% 10%, rgba(56,189,248,0.14), transparent 28%),
+        radial-gradient(circle at 80% 20%, rgba(167,139,250,0.12), transparent 30%),
+        linear-gradient(180deg, #020617 0%, #0f172a 55%, #020617 100%);
+      color:var(--text);
+      line-height:1.7;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(148,163,184,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148,163,184,0.04) 1px, transparent 1px);
+      background-size:42px 42px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,0.75), transparent 90%);
+      z-index:-1;
+    }
+
+    a{ color:inherit; }
+
+    header{
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 8%;
+      background:rgba(2,6,23,0.78);
+      border-bottom:1px solid var(--border);
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(18px);
+      animation:slideDown .8s ease both;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:900;
+      letter-spacing:.3px;
+      color:white;
+    }
+
+    .brand-mark{
+      width:38px;
+      height:38px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      background:linear-gradient(135deg, var(--primary), var(--accent));
+      color:#020617;
+      box-shadow:0 0 30px rgba(56,189,248,.35);
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#cbd5e1;
+      font-size:14px;
+      font-weight:700;
+      transition:.25s ease;
+    }
+
+    nav a:hover{ color:var(--primary); }
+
+    .nav-cta{
+      padding:10px 14px;
+      border-radius:999px;
+      color:#020617 !important;
+      background:linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow:0 10px 28px rgba(56,189,248,.25);
+    }
+
+    section{ padding:88px 8%; }
+
+    .hero{
+      min-height:92vh;
+      display:grid;
+      grid-template-columns:1.18fr .82fr;
+      align-items:center;
+      gap:42px;
+    }
+
+    .eyebrow{
+      width:max-content;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 13px;
+      border:1px solid rgba(56,189,248,.28);
+      border-radius:999px;
+      background:rgba(56,189,248,.08);
+      color:#bae6fd;
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:20px;
+      animation:fadeUp .7s ease both;
+    }
+
+    .pulse{
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:var(--success);
+      box-shadow:0 0 0 0 rgba(52,211,153,.7);
+      animation:pulse 1.6s infinite;
+    }
+
+    .hero h1{
+      font-size:clamp(42px, 6vw, 74px);
+      line-height:1.02;
+      letter-spacing:-2px;
+      color:white;
+      max-width:980px;
+      animation:fadeUp .9s ease both;
+    }
+
+    .gradient-text{
+      background:linear-gradient(135deg, var(--primary), var(--primary-2), var(--accent));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero p{
+      margin:24px 0;
+      max-width:720px;
+      color:#cbd5e1;
+      font-size:18px;
+      animation:fadeUp 1.05s ease both;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:28px;
+      animation:fadeUp 1.2s ease both;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:46px;
+      padding:12px 20px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:900;
+      border:1px solid transparent;
+      transition:.28s ease;
+    }
+
+    .btn.primary{
+      background:linear-gradient(135deg, var(--primary), var(--primary-2));
+      color:#020617;
+      box-shadow:0 18px 45px rgba(56,189,248,.28);
+    }
+
+    .btn.secondary{
+      border-color:rgba(56,189,248,.35);
+      color:#e0f2fe;
+      background:rgba(15,23,42,.68);
+    }
+
+    .btn:hover{
+      transform:translateY(-4px);
+      box-shadow:0 22px 55px rgba(56,189,248,.22);
+    }
+
+    button.btn{
+      cursor:pointer;
+      font:inherit;
+    }
+
+    .pay-btn{
+      width:100%;
+      margin-top:18px;
+    }
+
+    .payment-banner{
+      margin:22px 8% 0;
+      padding:15px 18px;
+      border-radius:14px;
+      border:1px solid rgba(56,189,248,.35);
+      background:rgba(56,189,248,.1);
+      color:#e0f2fe;
+      font-weight:800;
+      display:none;
+    }
+
+    .payment-banner.cancelled{
+      border-color:rgba(251,191,36,.4);
+      background:rgba(251,191,36,.1);
+      color:#fef3c7;
+    }
+
+    .hero-panel{
+      position:relative;
+      padding:26px;
+      border:1px solid var(--border);
+      border-radius:28px;
+      background:linear-gradient(180deg, rgba(15,23,42,.86), rgba(2,6,23,.9));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      animation:floatIn 1.1s ease both;
+    }
+
+    .hero-panel::before{
+      content:"";
+      position:absolute;
+      width:220px;
+      height:220px;
+      right:-70px;
+      top:-70px;
+      background:radial-gradient(circle, rgba(56,189,248,.26), transparent 66%);
+    }
+
+    .terminal{
+      position:relative;
+      border-radius:20px;
+      border:1px solid rgba(148,163,184,.2);
+      background:#020617;
+      overflow:hidden;
+    }
+
+    .terminal-top{
+      display:flex;
+      gap:7px;
+      padding:14px;
+      border-bottom:1px solid rgba(148,163,184,.14);
+      background:rgba(15,23,42,.9);
+    }
+
+    .dot{ width:11px; height:11px; border-radius:50%; background:#64748b; }
+    .dot:nth-child(1){ background:#fb7185; }
+    .dot:nth-child(2){ background:#fbbf24; }
+    .dot:nth-child(3){ background:#34d399; }
+
+    .terminal-body{
+      padding:18px;
+      font-family:Consolas, monospace;
+      font-size:14px;
+      color:#cbd5e1;
+    }
+
+    .line{ margin:10px 0; }
+    .cmd{ color:var(--primary); }
+    .ok{ color:var(--success); }
+    .warn{ color:var(--warning); }
+    .purple{ color:#c4b5fd; }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .stat{
+      padding:16px;
+      border-radius:18px;
+      background:rgba(30,41,59,.72);
+      border:1px solid rgba(148,163,184,.14);
+    }
+
+    .stat strong{
+      display:block;
+      font-size:24px;
+      color:white;
+    }
+
+    .stat span{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .section-title{
+      margin-bottom:34px;
+    }
+
+    .section-title h2{
+      font-size:clamp(30px,4vw,44px);
+      color:white;
+      letter-spacing:-.8px;
+    }
+
+    .section-title p{
+      max-width:760px;
+      margin-top:10px;
+      color:var(--muted);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .card{
+      position:relative;
+      padding:24px;
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(30,41,59,.82), rgba(15,23,42,.84));
+      border:1px solid var(--border);
+      box-shadow:0 20px 55px rgba(2,6,23,.28);
+      transition:.32s ease;
+      overflow:hidden;
+    }
+
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg, rgba(56,189,248,.12), transparent 38%);
+      opacity:0;
+      transition:.32s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-9px);
+      border-color:rgba(56,189,248,.42);
+      box-shadow:0 28px 70px rgba(56,189,248,.12);
+    }
+
+    .card:hover::before{ opacity:1; }
+
+    .card > *{ position:relative; }
+
+    .card h3{
+      color:white;
+      font-size:20px;
+      margin-bottom:10px;
+    }
+
+    .card p{ color:#cbd5e1; }
+
+    .tag-row{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin:16px 0 18px;
+    }
+
+    .tag{
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(56,189,248,.08);
+      border:1px solid rgba(56,189,248,.18);
+      color:#bae6fd;
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .project-card{
+      min-height:315px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .project-top a{
+      text-decoration:none;
+      color:white;
+    }
+
+    .project-top a:hover{ color:var(--primary); }
+
+    .featured{
+      border-color:rgba(56,189,248,.45);
+      background:
+        radial-gradient(circle at top right, rgba(56,189,248,.16), transparent 35%),
+        linear-gradient(180deg, rgba(30,41,59,.9), rgba(15,23,42,.88));
+    }
+
+    .pricing-card .price{
+      font-size:34px;
+      font-weight:950;
+      color:white;
+      margin:8px 0;
+    }
+
+    .pricing-card ul{
+      list-style:none;
+      margin-top:14px;
+    }
+
+    .pricing-card li{
+      color:#cbd5e1;
+      margin:9px 0;
+    }
+
+    .pricing-card li::before{
+      content:"✓";
+      color:var(--success);
+      font-weight:900;
+      margin-right:8px;
+    }
+
+    .about-wrap{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .big-card{
+      padding:32px;
+    }
+
+    .timeline{
+      display:grid;
+      gap:14px;
+    }
+
+    .timeline-item{
+      padding:18px;
+      border-radius:18px;
+      background:rgba(15,23,42,.72);
+      border:1px solid var(--border);
+    }
+
+    .timeline-item strong{ color:white; }
+    .timeline-item p{ color:var(--muted); margin-top:4px; }
+
+    .contact-box{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+
+    .contact-link{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:16px;
+      border-radius:16px;
+      background:rgba(15,23,42,.75);
+      border:1px solid var(--border);
+      text-decoration:none;
+      transition:.25s ease;
+    }
+
+    .contact-link:hover{
+      transform:translateY(-4px);
+      border-color:rgba(56,189,248,.4);
+      color:var(--primary);
+    }
+
+    footer{
+      padding:30px 8%;
+      text-align:center;
+      color:var(--muted);
+      border-top:1px solid var(--border);
+      background:rgba(2,6,23,.86);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(22px);
+      animation:fadeUp .9s ease forwards;
+    }
+
+    @keyframes fadeUp{
+      from{ opacity:0; transform:translateY(28px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+    @keyframes slideDown{
+      from{ opacity:0; transform:translateY(-28px); }
+      to{ opacity:1; transform:translateY(0); }
+    }
+
+    @keyframes floatIn{
+      from{ opacity:0; transform:translateY(35px) scale(.96); }
+      to{ opacity:1; transform:translateY(0) scale(1); }
+    }
+
+    @keyframes pulse{
+      0%{ box-shadow:0 0 0 0 rgba(52,211,153,.65); }
+      70%{ box-shadow:0 0 0 10px rgba(52,211,153,0); }
+      100%{ box-shadow:0 0 0 0 rgba(52,211,153,0); }
+    }
+
+
+    .currency-toolbar{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:22px;
+      padding:16px;
+      border:1px solid var(--border);
+      border-radius:18px;
+      background:rgba(15,23,42,.68);
+    }
+
+    .currency-toolbar p{
+      color:var(--muted);
+      margin:0;
+    }
+
+    .currency-toggle{
+      display:inline-flex;
+      padding:5px;
+      border-radius:999px;
+      background:rgba(2,6,23,.8);
+      border:1px solid rgba(148,163,184,.22);
+    }
+
+    .currency-toggle button{
+      border:0;
+      cursor:pointer;
+      padding:10px 16px;
+      border-radius:999px;
+      background:transparent;
+      color:#cbd5e1;
+      font-weight:900;
+      transition:.25s ease;
+    }
+
+    .currency-toggle button.active{
+      background:linear-gradient(135deg, var(--primary), var(--primary-2));
+      color:#020617;
+      box-shadow:0 10px 24px rgba(56,189,248,.24);
+    }
+
+    .price-note{
+      display:block;
+      margin-top:2px;
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .payment-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+      align-items:stretch;
+    }
+
+    .payment-methods{
+      display:grid;
+      gap:14px;
+      margin-top:16px;
+    }
+
+    .payment-method{
+      padding:16px;
+      border-radius:18px;
+      border:1px solid var(--border);
+      background:rgba(15,23,42,.7);
+    }
+
+    .payment-method strong{
+      display:block;
+      color:white;
+      margin-bottom:4px;
+    }
+
+    .payment-method span{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .invoice-form{
+      display:grid;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .invoice-form input,
+    .invoice-form select,
+    .invoice-form textarea{
+      width:100%;
+      padding:13px 14px;
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,.25);
+      background:rgba(2,6,23,.72);
+      color:var(--text);
+      outline:none;
+    }
+
+    .invoice-form textarea{ min-height:110px; resize:vertical; }
+
+    .invoice-form input:focus,
+    .invoice-form select:focus,
+    .invoice-form textarea:focus{
+      border-color:rgba(56,189,248,.55);
+      box-shadow:0 0 0 4px rgba(56,189,248,.08);
+    }
+
+    .payment-disclaimer{
+      margin-top:14px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    @media(max-width:940px){
+      header{
+        flex-direction:column;
+        gap:14px;
+      }
+
+      nav{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .hero,
+      .about-wrap,
+      .contact-box,
+      .payment-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        padding-top:54px;
+      }
+    }
+
+    @media(max-width:620px){
+      section{ padding:68px 6%; }
+      header{ padding:16px 5%; }
+      .hero h1{ letter-spacing:-1px; }
+      .stats{ grid-template-columns:1fr; }
+      .hero-actions .btn{ width:100%; }
+      nav a{ font-size:13px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a class="brand" href="#home" aria-label="Matsoso Phomolo home">
+      <span class="brand-mark">MP</span>
+      <span>Matsoso Phomolo</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#payments">Payments</a>
+      <a class="nav-cta" href="https://wa.me/26657260714" target="_blank" rel="noopener">Hire Me</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div>
+        <div class="eyebrow"><span class="pulse"></span> Available for freelance systems work</div>
+        <h1>Backend Developer & <span class="gradient-text">SOC AI Systems Builder</span></h1>
+        <p>
+          I build scalable backend systems, AI-powered dashboards, secure APIs, and database-driven applications using FastAPI, PostgreSQL, React, Flask, and modern deployment tools.
+        </p>
+        <p>
+          My focus is simple: build real systems that solve real problems — not just beautiful pages.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://wa.me/26657260714" target="_blank" rel="noopener" class="btn primary">Start a Project →</a>
+          <a href="#projects" class="btn secondary">View My Work</a>
+          <a href="https://github.com/Matsoso-Phomolo" target="_blank" rel="noopener" class="btn secondary">GitHub Profile</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="Developer preview panel">
+        <div class="terminal">
+          <div class="terminal-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="terminal-body">
+            <div class="line"><span class="cmd">$</span> whoami</div>
+            <div class="line ok">Matsoso Phomolo</div>
+            <div class="line"><span class="cmd">$</span> stack --focus</div>
+            <div class="line purple">FastAPI • PostgreSQL • React • Flask • SOC AI</div>
+            <div class="line"><span class="cmd">$</span> current_build</div>
+            <div class="line warn">HexSOC AI — intelligent security operations dashboard</div>
+            <div class="line"><span class="cmd">$</span> status</div>
+            <div class="line ok">Ready to build production-style systems</div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><strong>4+</strong><span>System projects</span></div>
+          <div class="stat"><strong>Full</strong><span>Stack delivery</span></div>
+          <div class="stat"><strong>AI</strong><span>System focus</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about">
+      <div class="section-title reveal">
+        <h2>About Me</h2>
+        <p>I design and build professional systems with clean backend logic, structured databases, responsive interfaces, and deployment-ready architecture.</p>
+      </div>
+
+      <div class="about-wrap">
+        <div class="card big-card reveal">
+          <h3>What I Build</h3>
+          <p>
+            I specialize in admin dashboards, REST APIs, authentication systems, reporting tools, CRUD platforms, SOC dashboards, and AI-assisted decision systems.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Backend APIs</span>
+            <span class="tag">Dashboards</span>
+            <span class="tag">Databases</span>
+            <span class="tag">AI Systems</span>
+            <span class="tag">Deployment</span>
+          </div>
+          <p>
+            I approach every project like an industry-level system: clear structure, clean code, useful features, and maintainable logic.
+          </p>
+        </div>
+
+        <div class="timeline reveal">
+          <div class="timeline-item">
+            <strong>01 — Understand the problem</strong>
+            <p>I break the idea into users, workflows, data, features, and business rules.</p>
+          </div>
+          <div class="timeline-item">
+            <strong>02 — Design the system</strong>
+            <p>I plan the frontend, backend, database schema, API endpoints, and deployment path.</p>
+          </div>
+          <div class="timeline-item">
+            <strong>03 — Build and deliver</strong>
+            <p>I implement the system, test it, connect all layers, and prepare it for real users.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-title reveal">
+        <h2>Tech Stack</h2>
+        <p>Tools I use to build practical, scalable, and maintainable systems.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card reveal"><h3>Frontend</h3><p>React, Vite, HTML5, CSS3, responsive UI, dashboards, animations.</p></div>
+        <div class="card reveal"><h3>Backend</h3><p>FastAPI, Flask, REST APIs, authentication, business logic, integrations.</p></div>
+        <div class="card reveal"><h3>Database</h3><p>PostgreSQL, MySQL, SQLite, schema design, relationships, reports.</p></div>
+        <div class="card reveal"><h3>Security & SOC</h3><p>SOC dashboards, alert triage, asset inventory, AI detection concepts.</p></div>
+        <div class="card reveal"><h3>Deployment</h3><p>GitHub, Render, Vercel, environment variables, production setup.</p></div>
+        <div class="card reveal"><h3>AI Systems</h3><p>Rule engines, AI-assisted decisions, analytics, automation workflows.</p></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-title reveal">
+        <h2>Featured Projects</h2>
+        <p>Real systems that demonstrate backend logic, database design, dashboard building, and AI-powered thinking.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card project-card featured reveal">
+          <div class="project-top">
+            <h3><a href="https://github.com/Matsoso-Phomolo/allowance-ai" target="_blank" rel="noopener">AllowanceAI</a></h3>
+            <p>AI-powered budgeting system with analytics, reports, alerts, planning tools, and decision logic for smarter spending.</p>
+            <div class="tag-row"><span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">Analytics</span></div>
+          </div>
+          <a href="https://github.com/Matsoso-Phomolo/allowance-ai" target="_blank" rel="noopener" class="btn secondary">View Code</a>
+        </div>
+
+        <div class="card project-card featured reveal">
+          <div class="project-top">
+            <h3><a href="https://github.com/Matsoso-Phomolo" target="_blank" rel="noopener">HexSOC AI</a></h3>
+            <p>Security operations dashboard concept for assets, incidents, detections, SOC workflows, and AI-driven alert analysis.</p>
+            <div class="tag-row"><span class="tag">SOC</span><span class="tag">AI</span><span class="tag">PostgreSQL</span></div>
+          </div>
+          <a href="https://github.com/Matsoso-Phomolo" target="_blank" rel="noopener" class="btn secondary">View GitHub</a>
+        </div>
+
+        <div class="card project-card reveal">
+          <div class="project-top">
+            <h3><a href="https://github.com/Matsoso-Phomolo/Kinship-AI-System" target="_blank" rel="noopener">Kinship AI</a></h3>
+            <p>AI-based system for relationship insights, structured analysis, and intelligent decision support.</p>
+            <div class="tag-row"><span class="tag">AI</span><span class="tag">System Design</span></div>
+          </div>
+          <a href="https://github.com/Matsoso-Phomolo/Kinship-AI-System" target="_blank" rel="noopener" class="btn secondary">View Code</a>
+        </div>
+
+        <div class="card project-card reveal">
+          <div class="project-top">
+            <h3><a href="https://github.com/Matsoso-Phomolo/MatsosoRide" target="_blank" rel="noopener">MatsosoRide</a></h3>
+            <p>Taxi booking platform with request flow, user interaction, and real-world transport system logic.</p>
+            <div class="tag-row"><span class="tag">Flask</span><span class="tag">MySQL</span><span class="tag">Transport</span></div>
+          </div>
+          <a href="https://github.com/Matsoso-Phomolo/MatsosoRide" target="_blank" rel="noopener" class="btn secondary">View Code</a>
+        </div>
+
+        <div class="card project-card reveal">
+          <div class="project-top">
+            <h3><a href="https://github.com/Matsoso-Phomolo/Matsoso-datahub" target="_blank" rel="noopener">DataHub</a></h3>
+            <p>Centralized data management system for structured records, reporting, and organized data workflows.</p>
+            <div class="tag-row"><span class="tag">Data</span><span class="tag">Database</span><span class="tag">Reports</span></div>
+          </div>
+          <a href="https://github.com/Matsoso-Phomolo/Matsoso-datahub" target="_blank" rel="noopener" class="btn secondary">View Code</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="section-title reveal">
+        <h2>Services</h2>
+        <p>Practical development services for students, small businesses, startups, and technical teams.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card reveal"><h3>Full-Stack Web Systems</h3><p>Complete systems with frontend, backend, database, authentication, dashboards, and deployment.</p></div>
+        <div class="card reveal"><h3>Backend & API Development</h3><p>REST APIs, FastAPI/Flask backends, CRUD logic, authentication, and clean endpoint design.</p></div>
+        <div class="card reveal"><h3>Database Design</h3><p>Relational schemas, PostgreSQL/MySQL/SQLite setup, seed scripts, queries, and reporting structures.</p></div>
+        <div class="card reveal"><h3>Dashboard Development</h3><p>Admin dashboards, analytics panels, charts, reports, filters, role-based screens, and clean UI.</p></div>
+        <div class="card reveal"><h3>Deployment Support</h3><p>GitHub setup, Render deployment, Vercel hosting, environment variables, and live app setup.</p></div>
+        <div class="card reveal"><h3>System Upgrade & Debugging</h3><p>Fix bugs, improve UI, optimize structure, connect backend/frontend, and prepare systems for demos.</p></div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="section-title reveal">
+        <h2>Pricing</h2>
+        <p>Simple starting packages in South African Rand, with a USD toggle for international clients. Final price depends on features, complexity, and delivery scope.</p>
+      </div>
+
+      <div class="currency-toolbar reveal" aria-label="Currency selector">
+        <p><strong>Currency:</strong> Choose Rands for local clients or USD for global clients.</p>
+        <div class="currency-toggle" role="group" aria-label="Pricing currency toggle">
+          <button type="button" class="active" data-currency="zar">Rands (R)</button>
+          <button type="button" data-currency="usd">USD ($)</button>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card pricing-card reveal">
+          <h3>Starter</h3>
+          <div class="price" data-zar="R300–R500" data-usd="$30–$50">R300–R500</div>
+          <span class="price-note">Quick fixes and small improvements</span>
+          <p>For small fixes and quick improvements.</p>
+          <ul>
+            <li>Bug fixes</li>
+            <li>Small landing page</li>
+            <li>UI adjustments</li>
+            <li>Basic deployment help</li>
+          </ul>
+          <button type="button" class="btn primary pay-btn" data-package="starter">Pay Starter with Stripe</button>
+        </div>
+
+        <div class="card pricing-card featured reveal">
+          <h3>Standard</h3>
+          <div class="price" data-zar="R800–R1,500" data-usd="$80–$150">R800–R1,500</div>
+          <span class="price-note">Best for serious feature work</span>
+          <p>For useful features and serious system work.</p>
+          <ul>
+            <li>Dashboard component</li>
+            <li>API endpoint development</li>
+            <li>Database feature</li>
+            <li>Authentication flow</li>
+          </ul>
+          <button type="button" class="btn primary pay-btn" data-package="standard">Pay Standard with Stripe</button>
+        </div>
+
+        <div class="card pricing-card reveal">
+          <h3>Advanced</h3>
+          <div class="price" data-zar="R2,000+" data-usd="$200+">R2,000+</div>
+          <span class="price-note">Complete mini system package</span>
+          <p>For complete mini systems and business tools.</p>
+          <ul>
+            <li>Frontend + backend</li>
+            <li>Database integration</li>
+            <li>Reports and analytics</li>
+            <li>Deployment-ready setup</li>
+          </ul>
+          <button type="button" class="btn primary pay-btn" data-package="advanced">Pay Advanced with Stripe</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="payments">
+      <div class="section-title reveal">
+        <h2>Payments & Invoices</h2>
+        <p>Clients can request an invoice first. Payment details are shared only after project scope is confirmed.</p>
+      </div>
+
+      <div class="payment-grid">
+        <div class="card big-card reveal">
+          <h3>Accepted Payment Options</h3>
+          <p>Use the option that fits your location and project type.</p>
+          <div class="payment-methods">
+            <div class="payment-method"><strong>Mobile Money / Local Transfer</strong><span>For Lesotho and South Africa clients. Details shared after confirmation.</span></div>
+            <div class="payment-method"><strong>Bank Transfer</strong><span>Suitable for business clients, larger projects, and invoice-based work.</span></div>
+            <div class="payment-method"><strong>PayPal / International Payment</strong><span>For global clients. Replace this with your real PayPal link when ready.</span></div>
+            <div class="payment-method"><strong>Deposit First</strong><span>Recommended: 50% deposit before work starts, 50% after delivery.</span></div>
+          </div>
+          <p class="payment-disclaimer">Note: This portfolio does not process card payments directly yet. It sends invoice requests through email/WhatsApp so you can confirm scope safely before payment.</p>
+        </div>
+
+        <div class="card big-card reveal">
+          <h3>Request an Invoice</h3>
+          <p>Fill this in, then send it to me through WhatsApp or email.</p>
+          <form class="invoice-form" id="invoiceForm">
+            <input type="text" id="clientName" placeholder="Your name / company" required />
+            <input type="email" id="clientEmail" placeholder="Your email" required />
+            <select id="selectedPackage" required>
+              <option value="">Select package</option>
+              <option value="Starter - R300–R500">Starter - R300–R500</option>
+              <option value="Standard - R800–R1,500">Standard - R800–R1,500</option>
+              <option value="Advanced - R2,000+">Advanced - R2,000+</option>
+              <option value="Custom project">Custom project</option>
+            </select>
+            <textarea id="projectDetails" placeholder="Describe what you want me to build" required></textarea>
+            <button class="btn primary" type="submit">Send Invoice Request →</button>
+            <a class="btn secondary" id="whatsappInvoice" href="https://wa.me/26657260714" target="_blank" rel="noopener">Send via WhatsApp</a>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title reveal">
+        <h2>Let’s Build Your System</h2>
+        <p>Send me your idea, problem, or system requirements. I will help turn it into a working product.</p>
+      </div>
+
+      <div class="card big-card reveal">
+        <div class="contact-box">
+          <a class="contact-link" href="mailto:phomolomatsoso@gmail.com"><span>Email</span><strong>phomolomatsoso@gmail.com</strong></a>
+          <a class="contact-link" href="https://wa.me/26657260714" target="_blank" rel="noopener"><span>WhatsApp</span><strong>Chat Now</strong></a>
+          <a class="contact-link" href="https://github.com/Matsoso-Phomolo" target="_blank" rel="noopener"><span>GitHub</span><strong>@Matsoso-Phomolo</strong></a>
+          <a class="contact-link" href="https://www.linkedin.com/in/matsoso-phomolo-b3aa573a3" target="_blank" rel="noopener"><span>LinkedIn</span><strong>Matsoso Phomolo</strong></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Matsoso Phomolo. Backend Developer • Full-Stack Builder • SOC AI Systems.</p>
+  </footer>
+
+  <script>
+    // Replace this with your deployed Render backend URL after deploying backend/main.py.
+    const STRIPE_BACKEND_URL = "https://YOUR-RENDER-BACKEND.onrender.com";
+
+    const currencyButtons = document.querySelectorAll('.currency-toggle button');
+    const prices = document.querySelectorAll('.price[data-zar][data-usd]');
+    const packageSelect = document.getElementById('selectedPackage');
+    const invoiceForm = document.getElementById('invoiceForm');
+    const whatsappInvoice = document.getElementById('whatsappInvoice');
+    const paymentButtons = document.querySelectorAll('.pay-btn[data-package]');
+
+    function showPaymentBanner(){
+      const params = new URLSearchParams(window.location.search);
+      const paymentStatus = params.get('payment');
+
+      if (!paymentStatus) return;
+
+      const banner = document.createElement('div');
+      banner.className = 'payment-banner';
+
+      if (paymentStatus === 'success') {
+        banner.textContent = 'Payment successful. Thank you — I will contact you shortly.';
+      } else if (paymentStatus === 'cancelled') {
+        banner.classList.add('cancelled');
+        banner.textContent = 'Payment cancelled. You can try again or request an invoice.';
+      } else {
+        return;
+      }
+
+      banner.style.display = 'block';
+      document.querySelector('main')?.prepend(banner);
+      alert(banner.textContent);
+    }
+
+    function getActiveCurrency(){
+      return document.querySelector('.currency-toggle button.active')?.dataset.currency || 'zar';
+    }
+
+    currencyButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const currency = button.dataset.currency;
+        currencyButtons.forEach((btn) => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        prices.forEach((price) => {
+          price.textContent = currency === 'zar' ? price.dataset.zar : price.dataset.usd;
+        });
+
+        if (packageSelect) {
+          packageSelect.innerHTML = currency === 'zar'
+            ? `
+              <option value="">Select package</option>
+              <option value="Starter - R300–R500">Starter - R300–R500</option>
+              <option value="Standard - R800–R1,500">Standard - R800–R1,500</option>
+              <option value="Advanced - R2,000+">Advanced - R2,000+</option>
+              <option value="Custom project">Custom project</option>
+            `
+            : `
+              <option value="">Select package</option>
+              <option value="Starter - $30–$50">Starter - $30–$50</option>
+              <option value="Standard - $80–$150">Standard - $80–$150</option>
+              <option value="Advanced - $200+">Advanced - $200+</option>
+              <option value="Custom project">Custom project</option>
+            `;
+        }
+      });
+    });
+
+    function buildInvoiceMessage(){
+      const name = document.getElementById('clientName')?.value.trim() || '';
+      const email = document.getElementById('clientEmail')?.value.trim() || '';
+      const selectedPackage = document.getElementById('selectedPackage')?.value || '';
+      const details = document.getElementById('projectDetails')?.value.trim() || '';
+
+      return `Hello Matsoso, I want to request an invoice.%0A%0AName/Company: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0APackage: ${encodeURIComponent(selectedPackage)}%0AProject Details: ${encodeURIComponent(details)}`;
+    }
+
+    function updateWhatsAppLink(){
+      if (!whatsappInvoice) return;
+      whatsappInvoice.href = `https://wa.me/26657260714?text=${buildInvoiceMessage()}`;
+    }
+
+    document.querySelectorAll('#invoiceForm input, #invoiceForm select, #invoiceForm textarea').forEach((field) => {
+      field.addEventListener('input', updateWhatsAppLink);
+      field.addEventListener('change', updateWhatsAppLink);
+    });
+
+    if (invoiceForm) {
+      invoiceForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const subject = encodeURIComponent('Invoice Request - Matsoso Phomolo Portfolio');
+        const body = buildInvoiceMessage().replaceAll('%0A', '%0D%0A');
+        window.location.href = `mailto:phomolomatsoso@gmail.com?subject=${subject}&body=${body}`;
+      });
+    }
+
+    paymentButtons.forEach((button) => {
+      const defaultText = button.textContent;
+
+      button.addEventListener('click', async () => {
+        button.disabled = true;
+        button.textContent = 'Redirecting...';
+
+        try {
+          const response = await fetch(`${STRIPE_BACKEND_URL}/create-checkout-session`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              package: button.dataset.package,
+              currency: getActiveCurrency(),
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error('Could not start Stripe Checkout.');
+          }
+
+          const data = await response.json();
+
+          if (!data.url) {
+            throw new Error('Stripe Checkout URL was not returned.');
+          }
+
+          window.location.href = data.url;
+        } catch (error) {
+          button.disabled = false;
+          button.textContent = defaultText;
+          alert('Payment error. Please try again or request an invoice.');
+        }
+      });
+    });
+
+    showPaymentBanner();
+    updateWhatsAppLink();
+  </script>
+
+</body>
+</html>
