@@ -683,56 +683,262 @@
 
     .soc-map{
       position:relative;
-      min-height:260px;
+      height:520px;
       margin:0 18px 18px;
-      border-radius:22px;
-      border:1px solid rgba(148,163,184,.14);
-      background:
-        linear-gradient(rgba(56,189,248,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56,189,248,.04) 1px, transparent 1px),
-        rgba(2,6,23,.66);
-      background-size:32px 32px;
+      border-radius:28px;
+      border:1px solid rgba(56,189,248,.18);
       overflow:hidden;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(56,189,248,.09), transparent 62%),
+        radial-gradient(circle at 18% 38%, rgba(239,68,68,.10), transparent 24%),
+        radial-gradient(circle at 80% 42%, rgba(168,85,247,.10), transparent 24%),
+        linear-gradient(rgba(56,189,248,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,.055) 1px, transparent 1px),
+        #020617;
+      background-size:100% 100%, 100% 100%, 100% 100%, 34px 34px, 34px 34px;
+      box-shadow:inset 0 0 80px rgba(2,6,23,.9), 0 24px 70px rgba(2,6,23,.34);
+    }
+
+    .soc-map::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 50% 50%, transparent 0 36%, rgba(56,189,248,.06) 37%, transparent 38%),
+        radial-gradient(circle at 50% 50%, transparent 0 55%, rgba(56,189,248,.04) 56%, transparent 57%);
+      pointer-events:none;
+      opacity:.9;
+    }
+
+    .scan-beam{
+      position:absolute;
+      inset:-45% 0;
+      background:linear-gradient(180deg, transparent, rgba(56,189,248,.12), transparent);
+      animation:scanMove 4.5s linear infinite;
+      pointer-events:none;
+      z-index:1;
     }
 
     .node{
       position:absolute;
-      width:16px;
-      height:16px;
+      width:118px;
+      height:118px;
       border-radius:50%;
-      background:var(--primary);
-      box-shadow:0 0 24px rgba(56,189,248,.8);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:white;
+      z-index:5;
+      overflow:hidden;
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,.18);
+      transition:.35s ease;
+      isolation:isolate;
+    }
+
+    .node::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:50%;
+      background:radial-gradient(circle at 30% 28%, rgba(255,255,255,.32), transparent 30%);
+      pointer-events:none;
+      z-index:-1;
     }
 
     .node::after{
       content:"";
       position:absolute;
-      inset:-8px;
+      inset:-18px;
       border-radius:50%;
-      border:1px solid rgba(56,189,248,.35);
-      animation:pulse 1.8s infinite;
+      border:2px solid rgba(56,189,248,.18);
+      animation:nodePulse 2.2s infinite;
     }
 
-    .node.danger{ background:#fb7185; box-shadow:0 0 28px rgba(251,113,133,.82); }
-    .node.safe{ background:#34d399; box-shadow:0 0 28px rgba(52,211,153,.72); }
-    .node.one{ left:12%; top:22%; }
-    .node.two{ left:48%; top:45%; }
-    .node.three{ left:78%; top:28%; }
-    .node.four{ left:28%; top:75%; }
-    .node.five{ left:70%; top:72%; }
+    .node:hover{
+      transform:scale(1.07);
+      filter:saturate(1.25);
+    }
+
+    .node span{
+      font-size:29px;
+      line-height:1;
+      font-weight:950;
+      letter-spacing:1px;
+      text-shadow:0 2px 18px rgba(0,0,0,.4);
+    }
+
+    .node small{
+      margin-top:8px;
+      font-size:11px;
+      color:#dbeafe;
+      font-weight:900;
+      letter-spacing:.7px;
+    }
+
+    .node.kali{
+      left:7%;
+      top:30%;
+      background:radial-gradient(circle, #fb7185, #7f1d1d 62%, #450a0a);
+      box-shadow:0 0 70px rgba(251,113,133,.60), 0 0 0 12px rgba(251,113,133,.08);
+    }
+
+    .node.api{
+      left:43%;
+      top:11%;
+      background:radial-gradient(circle, #38bdf8, #075985 62%, #082f49);
+      box-shadow:0 0 70px rgba(56,189,248,.68), 0 0 0 12px rgba(56,189,248,.08);
+    }
+
+    .node.db{
+      right:7%;
+      top:34%;
+      background:radial-gradient(circle, #a78bfa, #6d28d9 62%, #3b0764);
+      box-shadow:0 0 70px rgba(167,139,250,.62), 0 0 0 12px rgba(167,139,250,.08);
+    }
+
+    .node.win{
+      left:43%;
+      bottom:9%;
+      background:radial-gradient(circle, #fbbf24, #b45309 62%, #451a03);
+      box-shadow:0 0 70px rgba(251,191,36,.62), 0 0 0 12px rgba(251,191,36,.08);
+    }
+
+    .node.soc{
+      left:13%;
+      bottom:9%;
+      background:radial-gradient(circle, #34d399, #047857 62%, #022c22);
+      box-shadow:0 0 70px rgba(52,211,153,.62), 0 0 0 12px rgba(52,211,153,.08);
+    }
 
     .attack-line{
       position:absolute;
-      height:2px;
-      background:linear-gradient(90deg, transparent, #fb7185, transparent);
+      height:4px;
+      border-radius:999px;
       transform-origin:left center;
-      opacity:.85;
-      animation:lineFlow 2.2s linear infinite;
+      opacity:.95;
+      z-index:2;
+      overflow:hidden;
+      box-shadow:0 0 18px currentColor;
     }
 
-    .attack-line.a{ width:235px; left:16%; top:28%; transform:rotate(18deg); }
-    .attack-line.b{ width:205px; left:51%; top:50%; transform:rotate(-34deg); animation-delay:.7s; }
-    .attack-line.c{ width:170px; left:32%; top:76%; transform:rotate(-20deg); animation-delay:1.1s; }
+    .attack-line::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.95), transparent);
+      animation:dataFlow 1.65s linear infinite;
+    }
+
+    .attack-line.kali-api{
+      width:285px;
+      left:18%;
+      top:39%;
+      transform:rotate(-14deg);
+      color:#fb7185;
+      background:rgba(251,113,133,.35);
+    }
+
+    .attack-line.kali-win{
+      width:310px;
+      left:18%;
+      top:49%;
+      transform:rotate(31deg);
+      color:#f472b6;
+      background:rgba(244,114,182,.34);
+      animation-delay:.35s;
+    }
+
+    .attack-line.api-db{
+      width:240px;
+      left:55%;
+      top:30%;
+      transform:rotate(20deg);
+      color:#38bdf8;
+      background:rgba(56,189,248,.36);
+      animation-delay:.75s;
+    }
+
+    .attack-line.win-soc{
+      width:220px;
+      left:25%;
+      top:78%;
+      transform:rotate(-24deg);
+      color:#34d399;
+      background:rgba(52,211,153,.36);
+      animation-delay:1.1s;
+    }
+
+    .path-label{
+      position:absolute;
+      z-index:4;
+      padding:5px 9px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.22);
+      background:rgba(2,6,23,.72);
+      color:#dbeafe;
+      font-size:10px;
+      font-weight:950;
+      letter-spacing:.7px;
+      backdrop-filter:blur(10px);
+    }
+
+    .path-label.one{ left:24%; top:28%; color:#fecdd3; }
+    .path-label.two{ left:29%; top:57%; color:#fbcfe8; }
+    .path-label.three{ left:66%; top:25%; color:#bae6fd; }
+    .path-label.four{ left:29%; top:84%; color:#bbf7d0; }
+
+    .map-legend{
+      position:absolute;
+      left:16px;
+      top:16px;
+      z-index:6;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .legend-pill{
+      padding:6px 9px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.18);
+      background:rgba(15,23,42,.72);
+      color:#cbd5e1;
+      font-size:10px;
+      font-weight:900;
+      backdrop-filter:blur(10px);
+    }
+
+    .legend-pill.red{ color:#fecdd3; }
+    .legend-pill.blue{ color:#bae6fd; }
+    .legend-pill.green{ color:#bbf7d0; }
+
+    @media(max-width:620px){
+      .soc-map{ height:430px; }
+
+      .node{
+        width:82px;
+        height:82px;
+      }
+
+      .node span{ font-size:20px; }
+      .node small{ font-size:8px; margin-top:5px; }
+
+      .node.kali{ left:5%; top:30%; }
+      .node.api{ left:40%; top:14%; }
+      .node.db{ right:4%; top:36%; }
+      .node.win{ left:42%; bottom:10%; }
+      .node.soc{ left:8%; bottom:11%; }
+
+      .attack-line.kali-api{ width:175px; left:18%; top:39%; }
+      .attack-line.kali-win{ width:205px; left:18%; top:50%; }
+      .attack-line.api-db{ width:140px; left:55%; top:31%; }
+      .attack-line.win-soc{ width:140px; left:25%; top:78%; }
+
+      .path-label{ display:none; }
+    }
 
     .soc-side{
       display:grid;
@@ -786,6 +992,22 @@
       0%{ opacity:.12; filter:blur(2px); }
       45%{ opacity:1; filter:blur(0); }
       100%{ opacity:.12; filter:blur(2px); }
+    }
+
+    @keyframes nodePulse{
+      0%{ transform:scale(1); opacity:.95; }
+      70%{ transform:scale(1.16); opacity:.18; }
+      100%{ transform:scale(1.24); opacity:0; }
+    }
+
+    @keyframes dataFlow{
+      from{ transform:translateX(-100%); }
+      to{ transform:translateX(220%); }
+    }
+
+    @keyframes scanMove{
+      from{ transform:translateY(-45%); }
+      to{ transform:translateY(45%); }
     }
 
     @media(max-width:940px){
@@ -907,23 +1129,57 @@
           </div>
 
           <div class="soc-map" aria-label="Simulated attack map">
-            <span class="node safe one" title="Firewall"></span>
-            <span class="node danger two" title="Target Workstation"></span>
-            <span class="node three" title="Database Server"></span>
-            <span class="node safe four" title="SOC Engine"></span>
-            <span class="node danger five" title="Suspicious Host"></span>
-            <span class="attack-line a"></span>
-            <span class="attack-line b"></span>
-            <span class="attack-line c"></span>
+            <div class="scan-beam"></div>
+
+            <div class="map-legend" aria-label="Attack graph legend">
+              <span class="legend-pill red">ATTACK PATH</span>
+              <span class="legend-pill blue">SERVICE LAYER</span>
+              <span class="legend-pill green">AI MONITORING</span>
+            </div>
+
+            <span class="node kali" title="Attacker machine">
+              <span>KALI</span>
+              <small>ATTACK NODE</small>
+            </span>
+
+            <span class="node api" title="Backend API service">
+              <span>API</span>
+              <small>FASTAPI CORE</small>
+            </span>
+
+            <span class="node db" title="Database server">
+              <span>DB</span>
+              <small>POSTGRESQL</small>
+            </span>
+
+            <span class="node win" title="Windows 10 victim workstation">
+              <span>WIN</span>
+              <small>ENDPOINT</small>
+            </span>
+
+            <span class="node soc" title="SOC monitoring engine">
+              <span>SOC</span>
+              <small>AI ENGINE</small>
+            </span>
+
+            <span class="attack-line kali-api"></span>
+            <span class="attack-line kali-win"></span>
+            <span class="attack-line api-db"></span>
+            <span class="attack-line win-soc"></span>
+
+            <span class="path-label one">API ENUMERATION</span>
+            <span class="path-label two">BRUTE FORCE</span>
+            <span class="path-label three">DATA ACCESS</span>
+            <span class="path-label four">TELEMETRY</span>
           </div>
         </div>
 
         <div class="soc-side">
           <div class="card ai-verdict reveal">
             <h3>AI Triage Verdict</h3>
-            <p>HexSOC AI classifies alerts, explains likely attack paths, and recommends next response actions.</p>
+            <p>HexSOC AI correlates endpoint, API, database, and authentication telemetry to classify likely attack chains and recommend containment actions.</p>
             <div class="risk-score"><span id="riskScore">82</span>/100</div>
-            <p id="aiRecommendation">Likely brute-force activity against a workstation. Recommended: isolate host, reset credentials, review authentication logs.</p>
+            <p id="aiRecommendation">Likely multi-stage intrusion: API enumeration from Kali followed by credential attacks against WIN endpoint. Recommended: isolate endpoint, rotate credentials, preserve logs, and inspect DB access attempts.</p>
             <div class="demo-actions">
               <button class="btn primary" type="button" id="simulateAttack">Simulate Attack</button>
               <button class="btn secondary" type="button" id="clearAlerts">Clear Alerts</button>
@@ -933,9 +1189,9 @@
           <div class="card reveal">
             <h3>Live Alert Stream</h3>
             <div class="alert-stream" id="alertStream">
-              <div class="alert-item critical"><strong>Critical:</strong> Brute-force pattern detected from 10.0.2.15</div>
-              <div class="alert-item high"><strong>High:</strong> Multiple failed logins on WIN-CLIENT-04</div>
-              <div class="alert-item medium"><strong>Medium:</strong> Unusual outbound connection observed</div>
+              <div class="alert-item critical"><strong>Critical:</strong> Kali attack node triggered brute-force pattern against WIN endpoint</div>
+              <div class="alert-item high"><strong>High:</strong> API enumeration detected before database access attempt</div>
+              <div class="alert-item medium"><strong>Medium:</strong> SOC AI correlated endpoint telemetry with authentication failures</div>
             </div>
           </div>
         </div>
@@ -1262,11 +1518,11 @@
     const aiRecommendation = document.getElementById('aiRecommendation');
 
     const demoAlerts = [
-      { level:'critical', title:'Critical', text:'Credential spraying detected across 6 accounts' },
-      { level:'high', title:'High', text:'Suspicious PowerShell execution on FINANCE-PC' },
-      { level:'medium', title:'Medium', text:'New external connection to unknown IP' },
-      { level:'high', title:'High', text:'Port scan detected against internal subnet' },
-      { level:'critical', title:'Critical', text:'Possible lateral movement from compromised host' }
+      { level:'critical', title:'Critical', text:'KALI → WIN: credential spraying pattern matched MITRE T1110' },
+      { level:'high', title:'High', text:'KALI → API: endpoint enumeration and suspicious request burst detected' },
+      { level:'medium', title:'Medium', text:'SOC AI: telemetry correlation raised confidence score across 3 data sources' },
+      { level:'high', title:'High', text:'API → DB: abnormal query pattern after failed authentication sequence' },
+      { level:'critical', title:'Critical', text:'WIN → SOC: endpoint containment recommended due to lateral-movement risk' }
     ];
 
     let currentAlerts = 7;
@@ -1283,7 +1539,7 @@
       if (confidenceScore) confidenceScore.textContent = `${Math.floor(88 + Math.random() * 10)}%`;
       if (riskScore) riskScore.textContent = Math.floor(78 + Math.random() * 17);
       if (aiRecommendation) {
-        aiRecommendation.textContent = 'AI recommends immediate containment: isolate affected endpoint, preserve logs, verify user identity, and review recent authentication events.';
+        aiRecommendation.textContent = 'AI recommends containment workflow: isolate WIN endpoint, block KALI source, rate-limit API, preserve authentication logs, and review DB access attempts.';
       }
     }
 
