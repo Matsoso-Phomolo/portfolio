@@ -213,33 +213,6 @@
       box-shadow:0 22px 55px rgba(56,189,248,.22);
     }
 
-    button.btn{
-      cursor:pointer;
-      font:inherit;
-    }
-
-    .pay-btn{
-      width:100%;
-      margin-top:18px;
-    }
-
-    .payment-banner{
-      margin:22px 8% 0;
-      padding:15px 18px;
-      border-radius:14px;
-      border:1px solid rgba(56,189,248,.35);
-      background:rgba(56,189,248,.1);
-      color:#e0f2fe;
-      font-weight:800;
-      display:none;
-    }
-
-    .payment-banner.cancelled{
-      border-color:rgba(251,191,36,.4);
-      background:rgba(251,191,36,.1);
-      color:#fef3c7;
-    }
-
     .hero-panel{
       position:relative;
       padding:26px;
@@ -644,6 +617,177 @@
       font-size:13px;
     }
 
+
+    /* HexSOC AI interactive demo */
+    .hexsoc-demo{
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hexsoc-shell{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .soc-dashboard{
+      border:1px solid var(--border);
+      border-radius:28px;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,.12), transparent 35%),
+        linear-gradient(180deg, rgba(15,23,42,.92), rgba(2,6,23,.94));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .soc-topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      padding:18px;
+      border-bottom:1px solid rgba(148,163,184,.14);
+      background:rgba(15,23,42,.72);
+    }
+
+    .soc-status{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 11px;
+      border-radius:999px;
+      background:rgba(52,211,153,.09);
+      color:#bbf7d0;
+      border:1px solid rgba(52,211,153,.22);
+      font-weight:900;
+      font-size:12px;
+    }
+
+    .soc-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      padding:18px;
+    }
+
+    .soc-metric{
+      padding:16px;
+      border-radius:18px;
+      background:rgba(30,41,59,.72);
+      border:1px solid rgba(148,163,184,.14);
+    }
+
+    .soc-metric span{ color:var(--muted); font-size:12px; font-weight:800; }
+    .soc-metric strong{ display:block; color:white; font-size:26px; line-height:1.2; }
+
+    .soc-map{
+      position:relative;
+      min-height:260px;
+      margin:0 18px 18px;
+      border-radius:22px;
+      border:1px solid rgba(148,163,184,.14);
+      background:
+        linear-gradient(rgba(56,189,248,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,.04) 1px, transparent 1px),
+        rgba(2,6,23,.66);
+      background-size:32px 32px;
+      overflow:hidden;
+    }
+
+    .node{
+      position:absolute;
+      width:16px;
+      height:16px;
+      border-radius:50%;
+      background:var(--primary);
+      box-shadow:0 0 24px rgba(56,189,248,.8);
+    }
+
+    .node::after{
+      content:"";
+      position:absolute;
+      inset:-8px;
+      border-radius:50%;
+      border:1px solid rgba(56,189,248,.35);
+      animation:pulse 1.8s infinite;
+    }
+
+    .node.danger{ background:#fb7185; box-shadow:0 0 28px rgba(251,113,133,.82); }
+    .node.safe{ background:#34d399; box-shadow:0 0 28px rgba(52,211,153,.72); }
+    .node.one{ left:12%; top:22%; }
+    .node.two{ left:48%; top:45%; }
+    .node.three{ left:78%; top:28%; }
+    .node.four{ left:28%; top:75%; }
+    .node.five{ left:70%; top:72%; }
+
+    .attack-line{
+      position:absolute;
+      height:2px;
+      background:linear-gradient(90deg, transparent, #fb7185, transparent);
+      transform-origin:left center;
+      opacity:.85;
+      animation:lineFlow 2.2s linear infinite;
+    }
+
+    .attack-line.a{ width:235px; left:16%; top:28%; transform:rotate(18deg); }
+    .attack-line.b{ width:205px; left:51%; top:50%; transform:rotate(-34deg); animation-delay:.7s; }
+    .attack-line.c{ width:170px; left:32%; top:76%; transform:rotate(-20deg); animation-delay:1.1s; }
+
+    .soc-side{
+      display:grid;
+      gap:18px;
+    }
+
+    .ai-verdict{
+      border-left:4px solid var(--primary);
+    }
+
+    .risk-score{
+      font-size:56px;
+      line-height:1;
+      font-weight:950;
+      color:white;
+      margin:10px 0;
+    }
+
+    .risk-score span{ color:#fb7185; }
+
+    .alert-stream{
+      display:grid;
+      gap:10px;
+      max-height:300px;
+      overflow:auto;
+      padding-right:4px;
+    }
+
+    .alert-item{
+      padding:13px;
+      border-radius:15px;
+      background:rgba(15,23,42,.78);
+      border:1px solid rgba(148,163,184,.14);
+      color:#cbd5e1;
+      animation:fadeUp .45s ease both;
+    }
+
+    .alert-item strong{ color:white; }
+    .alert-item.critical{ border-color:rgba(251,113,133,.34); }
+    .alert-item.high{ border-color:rgba(251,191,36,.34); }
+    .alert-item.medium{ border-color:rgba(56,189,248,.28); }
+
+    .demo-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:18px;
+    }
+
+    @keyframes lineFlow{
+      0%{ opacity:.12; filter:blur(2px); }
+      45%{ opacity:1; filter:blur(0); }
+      100%{ opacity:.12; filter:blur(2px); }
+    }
+
     @media(max-width:940px){
       header{
         flex-direction:column;
@@ -658,7 +802,8 @@
       .hero,
       .about-wrap,
       .contact-box,
-      .payment-grid{
+      .payment-grid,
+      .hexsoc-shell{
         grid-template-columns:1fr;
       }
 
@@ -689,6 +834,7 @@
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#hexsoc-demo">HexSOC Demo</a>
       <a href="#services">Services</a>
       <a href="#pricing">Pricing</a>
       <a href="#payments">Payments</a>
@@ -737,6 +883,65 @@
         </div>
       </aside>
     </section>
+
+    <section id="hexsoc-demo" class="hexsoc-demo">
+      <div class="section-title reveal">
+        <h2>HexSOC AI Live Demo</h2>
+        <p>An interactive portfolio demo that shows how I think about security operations systems: assets, live alerts, AI triage, risk scoring, and response workflow.</p>
+      </div>
+
+      <div class="hexsoc-shell">
+        <div class="soc-dashboard reveal">
+          <div class="soc-topbar">
+            <div>
+              <strong>HexSOC AI Command Center</strong>
+              <p style="color:var(--muted); margin-top:2px;">Simulated SOC monitoring environment</p>
+            </div>
+            <span class="soc-status"><span class="pulse"></span> LIVE</span>
+          </div>
+
+          <div class="soc-grid">
+            <div class="soc-metric"><span>Assets</span><strong id="assetCount">24</strong></div>
+            <div class="soc-metric"><span>Open Alerts</span><strong id="alertCount">7</strong></div>
+            <div class="soc-metric"><span>AI Confidence</span><strong id="confidenceScore">94%</strong></div>
+          </div>
+
+          <div class="soc-map" aria-label="Simulated attack map">
+            <span class="node safe one" title="Firewall"></span>
+            <span class="node danger two" title="Target Workstation"></span>
+            <span class="node three" title="Database Server"></span>
+            <span class="node safe four" title="SOC Engine"></span>
+            <span class="node danger five" title="Suspicious Host"></span>
+            <span class="attack-line a"></span>
+            <span class="attack-line b"></span>
+            <span class="attack-line c"></span>
+          </div>
+        </div>
+
+        <div class="soc-side">
+          <div class="card ai-verdict reveal">
+            <h3>AI Triage Verdict</h3>
+            <p>HexSOC AI classifies alerts, explains likely attack paths, and recommends next response actions.</p>
+            <div class="risk-score"><span id="riskScore">82</span>/100</div>
+            <p id="aiRecommendation">Likely brute-force activity against a workstation. Recommended: isolate host, reset credentials, review authentication logs.</p>
+            <div class="demo-actions">
+              <button class="btn primary" type="button" id="simulateAttack">Simulate Attack</button>
+              <button class="btn secondary" type="button" id="clearAlerts">Clear Alerts</button>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <h3>Live Alert Stream</h3>
+            <div class="alert-stream" id="alertStream">
+              <div class="alert-item critical"><strong>Critical:</strong> Brute-force pattern detected from 10.0.2.15</div>
+              <div class="alert-item high"><strong>High:</strong> Multiple failed logins on WIN-CLIENT-04</div>
+              <div class="alert-item medium"><strong>Medium:</strong> Unusual outbound connection observed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <section id="about">
       <div class="section-title reveal">
@@ -891,7 +1096,6 @@
             <li>UI adjustments</li>
             <li>Basic deployment help</li>
           </ul>
-          <button type="button" class="btn primary pay-btn" data-package="starter">Pay Starter with Stripe</button>
         </div>
 
         <div class="card pricing-card featured reveal">
@@ -905,7 +1109,6 @@
             <li>Database feature</li>
             <li>Authentication flow</li>
           </ul>
-          <button type="button" class="btn primary pay-btn" data-package="standard">Pay Standard with Stripe</button>
         </div>
 
         <div class="card pricing-card reveal">
@@ -919,7 +1122,6 @@
             <li>Reports and analytics</li>
             <li>Deployment-ready setup</li>
           </ul>
-          <button type="button" class="btn primary pay-btn" data-package="advanced">Pay Advanced with Stripe</button>
         </div>
       </div>
     </section>
@@ -986,42 +1188,11 @@
   </footer>
 
   <script>
-    // Replace this with your deployed Render backend URL after deploying backend/main.py.
-    const STRIPE_BACKEND_URL = "https://YOUR-RENDER-BACKEND.onrender.com";
-
     const currencyButtons = document.querySelectorAll('.currency-toggle button');
     const prices = document.querySelectorAll('.price[data-zar][data-usd]');
     const packageSelect = document.getElementById('selectedPackage');
     const invoiceForm = document.getElementById('invoiceForm');
     const whatsappInvoice = document.getElementById('whatsappInvoice');
-    const paymentButtons = document.querySelectorAll('.pay-btn[data-package]');
-
-    function showPaymentBanner(){
-      const params = new URLSearchParams(window.location.search);
-      const paymentStatus = params.get('payment');
-
-      if (!paymentStatus) return;
-
-      const banner = document.createElement('div');
-      banner.className = 'payment-banner';
-
-      if (paymentStatus === 'success') {
-        banner.textContent = 'Payment successful. Thank you — I will contact you shortly.';
-      } else if (paymentStatus === 'cancelled') {
-        banner.classList.add('cancelled');
-        banner.textContent = 'Payment cancelled. You can try again or request an invoice.';
-      } else {
-        return;
-      }
-
-      banner.style.display = 'block';
-      document.querySelector('main')?.prepend(banner);
-      alert(banner.textContent);
-    }
-
-    function getActiveCurrency(){
-      return document.querySelector('.currency-toggle button.active')?.dataset.currency || 'zar';
-    }
 
     currencyButtons.forEach((button) => {
       button.addEventListener('click', () => {
@@ -1081,45 +1252,59 @@
       });
     }
 
-    paymentButtons.forEach((button) => {
-      const defaultText = button.textContent;
 
-      button.addEventListener('click', async () => {
-        button.disabled = true;
-        button.textContent = 'Redirecting...';
+    const alertStream = document.getElementById('alertStream');
+    const simulateAttack = document.getElementById('simulateAttack');
+    const clearAlerts = document.getElementById('clearAlerts');
+    const alertCount = document.getElementById('alertCount');
+    const confidenceScore = document.getElementById('confidenceScore');
+    const riskScore = document.getElementById('riskScore');
+    const aiRecommendation = document.getElementById('aiRecommendation');
 
-        try {
-          const response = await fetch(`${STRIPE_BACKEND_URL}/create-checkout-session`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              package: button.dataset.package,
-              currency: getActiveCurrency(),
-            }),
-          });
+    const demoAlerts = [
+      { level:'critical', title:'Critical', text:'Credential spraying detected across 6 accounts' },
+      { level:'high', title:'High', text:'Suspicious PowerShell execution on FINANCE-PC' },
+      { level:'medium', title:'Medium', text:'New external connection to unknown IP' },
+      { level:'high', title:'High', text:'Port scan detected against internal subnet' },
+      { level:'critical', title:'Critical', text:'Possible lateral movement from compromised host' }
+    ];
 
-          if (!response.ok) {
-            throw new Error('Could not start Stripe Checkout.');
-          }
+    let currentAlerts = 7;
 
-          const data = await response.json();
+    function addDemoAlert(){
+      if (!alertStream) return;
+      const item = demoAlerts[Math.floor(Math.random() * demoAlerts.length)];
+      const div = document.createElement('div');
+      div.className = `alert-item ${item.level}`;
+      div.innerHTML = `<strong>${item.title}:</strong> ${item.text}`;
+      alertStream.prepend(div);
+      currentAlerts += 1;
+      if (alertCount) alertCount.textContent = currentAlerts;
+      if (confidenceScore) confidenceScore.textContent = `${Math.floor(88 + Math.random() * 10)}%`;
+      if (riskScore) riskScore.textContent = Math.floor(78 + Math.random() * 17);
+      if (aiRecommendation) {
+        aiRecommendation.textContent = 'AI recommends immediate containment: isolate affected endpoint, preserve logs, verify user identity, and review recent authentication events.';
+      }
+    }
 
-          if (!data.url) {
-            throw new Error('Stripe Checkout URL was not returned.');
-          }
+    simulateAttack?.addEventListener('click', addDemoAlert);
 
-          window.location.href = data.url;
-        } catch (error) {
-          button.disabled = false;
-          button.textContent = defaultText;
-          alert('Payment error. Please try again or request an invoice.');
-        }
-      });
+    clearAlerts?.addEventListener('click', () => {
+      if (!alertStream) return;
+      alertStream.innerHTML = '<div class="alert-item medium"><strong>Info:</strong> Analyst cleared active queue. Monitoring continues.</div>';
+      currentAlerts = 1;
+      if (alertCount) alertCount.textContent = currentAlerts;
+      if (riskScore) riskScore.textContent = '24';
+      if (confidenceScore) confidenceScore.textContent = '91%';
+      if (aiRecommendation) aiRecommendation.textContent = 'Environment stable. Continue monitoring authentication events and endpoint telemetry.';
     });
 
-    showPaymentBanner();
+    setInterval(() => {
+      if (document.hidden) return;
+      addDemoAlert();
+    }, 6500);
+
+
     updateWhatsAppLink();
   </script>
 
