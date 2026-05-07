@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Matsoso Phomolo - Backend Developer, Full-Stack Developer, and SOC AI Systems Builder specializing in FastAPI, PostgreSQL, React, dashboards, and AI-powered systems." />
-  <title>Matsoso Phomolo | Backend Developer & SOC AI Systems Builder</title>
+  <meta name="description" content="Matsoso Phomolo - Developer and AI/SOC Systems Engineer specializing in backend systems, cybersecurity dashboards, AI-assisted workflows, databases, and full-stack systems engineering." />
+  <title>Matsoso Phomolo | Developer & AI/SOC Systems Engineer</title>
 
   <style>
     :root{
@@ -213,6 +213,33 @@
       box-shadow:0 22px 55px rgba(56,189,248,.22);
     }
 
+    button.btn{
+      cursor:pointer;
+      font:inherit;
+    }
+
+    .pay-btn{
+      width:100%;
+      margin-top:18px;
+    }
+
+    .payment-banner{
+      margin:22px 8% 0;
+      padding:15px 18px;
+      border-radius:14px;
+      border:1px solid rgba(56,189,248,.35);
+      background:rgba(56,189,248,.1);
+      color:#e0f2fe;
+      font-weight:800;
+      display:none;
+    }
+
+    .payment-banner.cancelled{
+      border-color:rgba(251,191,36,.4);
+      background:rgba(251,191,36,.1);
+      color:#fef3c7;
+    }
+
     .hero-panel{
       position:relative;
       padding:26px;
@@ -352,6 +379,85 @@
     }
 
     .card p{ color:#cbd5e1; }
+
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .skill-card{
+      min-height:215px;
+      padding:26px;
+      border-radius:20px;
+      background:
+        linear-gradient(145deg, rgba(15,23,42,.96), rgba(8,13,28,.94)),
+        radial-gradient(circle at 16% 10%, rgba(34,211,238,.18), transparent 34%);
+      border:1px solid rgba(56,189,248,.28);
+      box-shadow:
+        0 0 0 1px rgba(15,23,42,.8) inset,
+        0 22px 60px rgba(2,6,23,.38),
+        0 0 34px rgba(34,211,238,.06);
+      isolation:isolate;
+    }
+
+    .skill-card::before{
+      background:
+        linear-gradient(90deg, transparent, rgba(56,189,248,.22), transparent),
+        linear-gradient(135deg, rgba(167,139,250,.12), transparent 44%);
+      transform:translateX(-65%);
+    }
+
+    .skill-card::after{
+      content:"";
+      position:absolute;
+      inset:12px;
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,.08);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .skill-card:hover{
+      transform:translateY(-10px) scale(1.01);
+      border-color:rgba(34,211,238,.62);
+      box-shadow:
+        0 30px 80px rgba(2,6,23,.52),
+        0 0 42px rgba(34,211,238,.16),
+        0 0 28px rgba(167,139,250,.1);
+    }
+
+    .skill-card:hover::before{
+      opacity:1;
+      transform:translateX(0);
+    }
+
+    .skill-card h3{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:14px;
+      color:#f8fafc;
+      font-size:21px;
+      font-weight:950;
+    }
+
+    .skill-card h3::before{
+      content:"";
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--primary-2);
+      box-shadow:0 0 16px rgba(34,211,238,.88);
+      flex:0 0 auto;
+    }
+
+    .skill-card p{
+      color:#c7d2fe;
+      font-size:15px;
+      line-height:1.75;
+    }
 
     .tag-row{
       display:flex;
@@ -1068,12 +1174,12 @@
     <section class="hero" id="home">
       <div>
         <div class="eyebrow"><span class="pulse"></span> Available for freelance systems work</div>
-        <h1>Backend Developer & <span class="gradient-text">SOC AI Systems Builder</span></h1>
+        <h1>Developer & <span class="gradient-text">AI/SOC Systems Engineer</span></h1>
         <p>
-          I build scalable backend systems, AI-powered dashboards, secure APIs, and database-driven applications using FastAPI, PostgreSQL, React, Flask, and modern deployment tools.
+          I build scalable backend platforms, cybersecurity dashboards, AI-assisted systems, secure APIs, and database-driven applications using FastAPI, Flask, PostgreSQL, React, C++, SQLite, and modern deployment tools.
         </p>
         <p>
-          My focus is simple: build real systems that solve real problems — not just beautiful pages.
+          My focus is simple: engineer real systems for operations, security, data, and automation — not just beautiful pages.
         </p>
 
         <div class="hero-actions">
@@ -1090,7 +1196,7 @@
             <div class="line"><span class="cmd">$</span> whoami</div>
             <div class="line ok">Matsoso Phomolo</div>
             <div class="line"><span class="cmd">$</span> stack --focus</div>
-            <div class="line purple">FastAPI • PostgreSQL • React • Flask • SOC AI</div>
+            <div class="line purple">FastAPI • Flask • PostgreSQL • React • C++ • SQLite • SOC AI</div>
             <div class="line"><span class="cmd">$</span> current_build</div>
             <div class="line warn">HexSOC AI — intelligent security operations dashboard</div>
             <div class="line"><span class="cmd">$</span> status</div>
@@ -1202,24 +1308,26 @@
     <section id="about">
       <div class="section-title reveal">
         <h2>About Me</h2>
-        <p>I design and build professional systems with clean backend logic, structured databases, responsive interfaces, and deployment-ready architecture.</p>
+        <p>I design and build professional systems with clean backend logic, structured databases, security-aware workflows, responsive interfaces, and deployment-ready architecture.</p>
       </div>
 
       <div class="about-wrap">
         <div class="card big-card reveal">
           <h3>What I Build</h3>
           <p>
-            I specialize in admin dashboards, REST APIs, authentication systems, reporting tools, CRUD platforms, SOC dashboards, and AI-assisted decision systems.
+            I specialize in backend engineering, full-stack systems, cybersecurity dashboards, REST APIs, authentication systems, reporting tools, SOC workflows, and AI-assisted decision systems.
           </p>
           <div class="tag-row">
             <span class="tag">Backend APIs</span>
+            <span class="tag">Systems Engineering</span>
+            <span class="tag">Cybersecurity</span>
             <span class="tag">Dashboards</span>
             <span class="tag">Databases</span>
             <span class="tag">AI Systems</span>
             <span class="tag">Deployment</span>
           </div>
           <p>
-            I approach every project like an industry-level system: clear structure, clean code, useful features, and maintainable logic.
+            I approach every project like an industry-level platform: clear architecture, clean code, useful features, security-aware thinking, and maintainable logic.
           </p>
         </div>
 
@@ -1243,23 +1351,25 @@
     <section id="skills">
       <div class="section-title reveal">
         <h2>Tech Stack</h2>
-        <p>Tools I use to build practical, scalable, and maintainable systems.</p>
+        <p>Engineering tools I use to build backend platforms, security dashboards, AI workflows, and full-stack production systems.</p>
       </div>
 
-      <div class="grid">
-        <div class="card reveal"><h3>Frontend</h3><p>React, Vite, HTML5, CSS3, responsive UI, dashboards, animations.</p></div>
-        <div class="card reveal"><h3>Backend</h3><p>FastAPI, Flask, REST APIs, authentication, business logic, integrations.</p></div>
-        <div class="card reveal"><h3>Database</h3><p>PostgreSQL, MySQL, SQLite, schema design, relationships, reports.</p></div>
-        <div class="card reveal"><h3>Security & SOC</h3><p>SOC dashboards, alert triage, asset inventory, AI detection concepts.</p></div>
-        <div class="card reveal"><h3>Deployment</h3><p>GitHub, Render, Vercel, environment variables, production setup.</p></div>
-        <div class="card reveal"><h3>AI Systems</h3><p>Rule engines, AI-assisted decisions, analytics, automation workflows.</p></div>
+      <div class="skills-grid">
+        <div class="card skill-card reveal"><h3>Frontend</h3><p>HTML5, CSS3, JavaScript, React, Vite, responsive dashboards, animations, UI/UX.</p></div>
+        <div class="card skill-card reveal"><h3>Backend</h3><p>FastAPI, Flask, REST APIs, authentication, business logic, system integrations.</p></div>
+        <div class="card skill-card reveal"><h3>Databases</h3><p>PostgreSQL, MySQL, SQLite3, schema design, relationships, reporting, data persistence.</p></div>
+        <div class="card skill-card reveal"><h3>Systems Programming</h3><p>C++, C++17, Data Structures & Algorithms, OOP, modular architecture, CMake.</p></div>
+        <div class="card skill-card reveal"><h3>Security & SOC</h3><p>SOC dashboards, alert triage, asset inventory, threat intelligence concepts, AI detection workflows.</p></div>
+        <div class="card skill-card reveal"><h3>AI Systems</h3><p>Rule engines, AI-assisted decisions, anomaly detection concepts, analytics, automation workflows.</p></div>
+        <div class="card skill-card reveal"><h3>Deployment</h3><p>GitHub, Render, Vercel, environment variables, production setup.</p></div>
+        <div class="card skill-card reveal"><h3>Core Web Tools</h3><p>HTML, CSS, JavaScript, DOM manipulation, forms, local storage, browser-based interfaces.</p></div>
       </div>
     </section>
 
     <section id="projects">
       <div class="section-title reveal">
         <h2>Featured Projects</h2>
-        <p>Real systems that demonstrate backend logic, database design, dashboard building, and AI-powered thinking.</p>
+        <p>Security-minded systems and AI-enabled platforms that demonstrate backend logic, database design, operational dashboards, and full-stack engineering.</p>
       </div>
 
       <div class="grid">
@@ -1313,16 +1423,16 @@
     <section id="services">
       <div class="section-title reveal">
         <h2>Services</h2>
-        <p>Practical development services for students, small businesses, startups, and technical teams.</p>
+        <p>Engineering services for teams and founders who need practical backend systems, cybersecurity dashboards, AI workflows, and full-stack platforms.</p>
       </div>
 
       <div class="grid">
-        <div class="card reveal"><h3>Full-Stack Web Systems</h3><p>Complete systems with frontend, backend, database, authentication, dashboards, and deployment.</p></div>
-        <div class="card reveal"><h3>Backend & API Development</h3><p>REST APIs, FastAPI/Flask backends, CRUD logic, authentication, and clean endpoint design.</p></div>
-        <div class="card reveal"><h3>Database Design</h3><p>Relational schemas, PostgreSQL/MySQL/SQLite setup, seed scripts, queries, and reporting structures.</p></div>
-        <div class="card reveal"><h3>Dashboard Development</h3><p>Admin dashboards, analytics panels, charts, reports, filters, role-based screens, and clean UI.</p></div>
-        <div class="card reveal"><h3>Deployment Support</h3><p>GitHub setup, Render deployment, Vercel hosting, environment variables, and live app setup.</p></div>
-        <div class="card reveal"><h3>System Upgrade & Debugging</h3><p>Fix bugs, improve UI, optimize structure, connect backend/frontend, and prepare systems for demos.</p></div>
+        <div class="card reveal"><h3>Full-Stack Systems Engineering</h3><p>Complete systems with frontend, backend, databases, authentication, dashboards, and deployment-ready architecture.</p></div>
+        <div class="card reveal"><h3>Backend & API Engineering</h3><p>REST APIs, FastAPI/Flask backends, CRUD logic, authentication, integrations, and clean endpoint design.</p></div>
+        <div class="card reveal"><h3>Database & Persistence Design</h3><p>Relational schemas, PostgreSQL/MySQL/SQLite setup, seed scripts, queries, reporting structures, and data workflows.</p></div>
+        <div class="card reveal"><h3>Cybersecurity Dashboards</h3><p>SOC-style monitoring views, alert panels, asset inventory, risk scoring, reports, filters, and role-based screens.</p></div>
+        <div class="card reveal"><h3>Deployment & Production Setup</h3><p>GitHub setup, Render deployment, Vercel hosting, environment variables, service configuration, and live app setup.</p></div>
+        <div class="card reveal"><h3>AI Systems & Debugging</h3><p>Improve workflows, connect backend/frontend layers, debug logic, and prepare AI-assisted systems for demos.</p></div>
       </div>
     </section>
 
@@ -1352,6 +1462,7 @@
             <li>UI adjustments</li>
             <li>Basic deployment help</li>
           </ul>
+          <button type="button" class="btn primary pay-btn" data-package="starter">Pay Starter with Stripe</button>
         </div>
 
         <div class="card pricing-card featured reveal">
@@ -1365,6 +1476,7 @@
             <li>Database feature</li>
             <li>Authentication flow</li>
           </ul>
+          <button type="button" class="btn primary pay-btn" data-package="standard">Pay Standard with Stripe</button>
         </div>
 
         <div class="card pricing-card reveal">
@@ -1378,6 +1490,7 @@
             <li>Reports and analytics</li>
             <li>Deployment-ready setup</li>
           </ul>
+          <button type="button" class="btn primary pay-btn" data-package="advanced">Pay Advanced with Stripe</button>
         </div>
       </div>
     </section>
@@ -1444,11 +1557,42 @@
   </footer>
 
   <script>
+    // Replace this with your deployed Render backend URL after deploying backend/main.py.
+    const STRIPE_BACKEND_URL = "https://YOUR-RENDER-BACKEND.onrender.com";
+
     const currencyButtons = document.querySelectorAll('.currency-toggle button');
     const prices = document.querySelectorAll('.price[data-zar][data-usd]');
     const packageSelect = document.getElementById('selectedPackage');
     const invoiceForm = document.getElementById('invoiceForm');
     const whatsappInvoice = document.getElementById('whatsappInvoice');
+    const paymentButtons = document.querySelectorAll('.pay-btn[data-package]');
+
+    function showPaymentBanner(){
+      const params = new URLSearchParams(window.location.search);
+      const paymentStatus = params.get('payment');
+
+      if (!paymentStatus) return;
+
+      const banner = document.createElement('div');
+      banner.className = 'payment-banner';
+
+      if (paymentStatus === 'success') {
+        banner.textContent = 'Payment successful. Thank you — I will contact you shortly.';
+      } else if (paymentStatus === 'cancelled') {
+        banner.classList.add('cancelled');
+        banner.textContent = 'Payment cancelled. You can try again or request an invoice.';
+      } else {
+        return;
+      }
+
+      banner.style.display = 'block';
+      document.querySelector('main')?.prepend(banner);
+      alert(banner.textContent);
+    }
+
+    function getActiveCurrency(){
+      return document.querySelector('.currency-toggle button.active')?.dataset.currency || 'zar';
+    }
 
     currencyButtons.forEach((button) => {
       button.addEventListener('click', () => {
@@ -1508,6 +1652,44 @@
       });
     }
 
+    paymentButtons.forEach((button) => {
+      const defaultText = button.textContent;
+
+      button.addEventListener('click', async () => {
+        button.disabled = true;
+        button.textContent = 'Redirecting...';
+
+        try {
+          const response = await fetch(`${STRIPE_BACKEND_URL}/create-checkout-session`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              package: button.dataset.package,
+              currency: getActiveCurrency(),
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error('Could not start Stripe Checkout.');
+          }
+
+          const data = await response.json();
+
+          if (!data.url) {
+            throw new Error('Stripe Checkout URL was not returned.');
+          }
+
+          window.location.href = data.url;
+        } catch (error) {
+          button.disabled = false;
+          button.textContent = defaultText;
+          alert('Payment error. Please try again or request an invoice.');
+        }
+      });
+    });
+
 
     const alertStream = document.getElementById('alertStream');
     const simulateAttack = document.getElementById('simulateAttack');
@@ -1561,6 +1743,7 @@
     }, 6500);
 
 
+    showPaymentBanner();
     updateWhatsAppLink();
   </script>
 
