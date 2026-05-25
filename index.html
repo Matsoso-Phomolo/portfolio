@@ -1406,7 +1406,7 @@
             <p>Taxi booking platform with request flow, user interaction, and real-world transport system logic.</p>
             <div class="tag-row"><span class="tag">Flask</span><span class="tag">MySQL</span><span class="tag">System Design</span></div>
           </div>
-          <a href="https://github.com/Matsoso-Phomolo/MatsosoRide" target="_blank" rel="noopener" class="btn secondary">View Code</a>
+          <a href="https://github.com/Matsoso-Phomolo/studio88-lesotho" target="_blank" rel="noopener" class="btn secondary">View Code</a>
         </div>
 
         <div class="card project-card reveal">
@@ -1416,15 +1416,6 @@
             <div class="tag-row"><span class="tag">Flask</span><span class="tag">MySQL</span><span class="tag">Transport</span></div>
           </div>
           <a href="https://github.com/Matsoso-Phomolo/MatsosoRide" target="_blank" rel="noopener" class="btn secondary">View Code</a>
-        </div>
-
-        <div class="card project-card reveal">
-          <div class="project-top">
-            <h3><a href="https://github.com/Matsoso-Phomolo/Matsoso-datahub" target="_blank" rel="noopener">DataHub</a></h3>
-            <p>Centralized data management system for structured records, reporting, and organized data workflows.</p>
-            <div class="tag-row"><span class="tag">Data</span><span class="tag">Database</span><span class="tag">Reports</span></div>
-          </div>
-          <a href="https://github.com/Matsoso-Phomolo/Matsoso-datahub" target="_blank" rel="noopener" class="btn secondary">View Code</a>
         </div>
       </div>
     </section>
@@ -1562,12 +1553,17 @@
   </main>
 
   <footer>
-    <p>© 2026 Matsoso Phomolo. Backend Developer • Full-Stack Builder • SOC AI Systems.</p>
+    <p>© 2026 Matsoso Phomolo. Developer • AI/SOC Systems Engineer • Backend & Cybersecurity Systems.</p>
   </footer>
 
   <script>
     // Replace this with your deployed Render backend URL after deploying backend/main.py.
-    const STRIPE_BACKEND_URL = "https://YOUR-RENDER-BACKEND.onrender.com";
+    const DEPLOYED_STRIPE_BACKEND_URL = "https://YOUR-RENDER-BACKEND.onrender.com";
+    const LOCAL_STRIPE_BACKEND_URL = "http://127.0.0.1:8000";
+    const STRIPE_BACKEND_URL = ['file:', 'http:'].includes(window.location.protocol)
+      && ['localhost', '127.0.0.1', ''].includes(window.location.hostname)
+        ? LOCAL_STRIPE_BACKEND_URL
+        : DEPLOYED_STRIPE_BACKEND_URL;
 
     const currencyButtons = document.querySelectorAll('.currency-toggle button');
     const prices = document.querySelectorAll('.price[data-zar][data-usd]');

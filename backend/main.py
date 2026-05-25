@@ -9,17 +9,21 @@ FRONTEND_URL=https://matsoso-portfolio.vercel.app
 """
 
 import os
+from pathlib import Path
 from typing import Literal
 
 import stripe
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
 load_dotenv()
 
 FRONTEND_URL = os.getenv("FRONTEND_URL", "https://matsoso-portfolio.vercel.app")
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+INDEX_HTML = PROJECT_ROOT / "index.html"
 stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 
 app = FastAPI(title="Matsoso Portfolio Stripe Backend")
@@ -30,6 +34,7 @@ app.add_middleware(
         "https://matsoso-portfolio.vercel.app",
         "http://localhost:5500",
         "http://127.0.0.1:5500",
+        "null",
     ],
     allow_credentials=True,
     allow_methods=["POST", "OPTIONS"],
@@ -53,6 +58,14 @@ PACKAGE_NAMES = {
     "standard": "Standard Portfolio Package",
     "advanced": "Advanced Portfolio Package",
 }
+
+
+@app.get("/")
+def portfolio_home():
+    if not INDEX_HTML.exists():
+        raise HTTPException(status_code=404, detail="Portfolio index.html was not found.")
+
+    return FileResponse(INDEX_HTML)
 
 
 @app.post("/create-checkout-session")
